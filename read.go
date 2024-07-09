@@ -38,7 +38,7 @@ func (d *Directory) GetContent() any {
 type File struct {
 	Item
 	Path    string
-	Content string
+	Content any
 }
 
 func (f *File) GetPath() string {
@@ -70,12 +70,15 @@ func (r *READ) ReadDirectory(path string) (Directory, error) {
 	}
 }
 
-func (*READ) ReadFile(path string) (File, error) {
+func (*READ) ReadFile(path string, args ...string) (File, error) {
 	fileContent, readError := os.ReadFile(path)
 
 	if readError != nil {
 		return File{}, readError
 	}
 
+	if len(args) > 0 && args[0] == "b" {
+		return File{Path: path, Content: fileContent}, nil
+	}
 	return File{Path: path, Content: string(fileContent)}, nil
 }
