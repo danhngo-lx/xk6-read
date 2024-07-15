@@ -1,6 +1,7 @@
 package read
 
 import (
+	"fmt"
 	"os"
 
 	"github.com/grafana/sobek"
@@ -75,6 +76,7 @@ func (*READ) ReadFile(path string, args ...string) (File, error) {
 	fileContent, readError := os.ReadFile(path)
 	rt := sobek.New()
 	ab := rt.NewArrayBuffer(fileContent)
+	fmt.Println(ab.runtime)
 
 	if readError != nil {
 		return File{}, readError
