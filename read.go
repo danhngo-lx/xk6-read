@@ -3,6 +3,7 @@ package read
 import (
 	"os"
 
+	"github.com/grafana/sobek"
 	"go.k6.io/k6/js/modules"
 )
 
@@ -72,13 +73,15 @@ func (r *READ) ReadDirectory(path string) (Directory, error) {
 
 func (*READ) ReadFile(path string, args ...string) (File, error) {
 	fileContent, readError := os.ReadFile(path)
+	rt := sobek.New()
+	ab := rt.NewArrayBuffer(fileContent)
 
 	if readError != nil {
 		return File{}, readError
 	}
 
 	if len(args) > 0 && args[0] == "b" {
-		return File{Path: path, Content: fileContent}, nil
+		return File{Path: path, Content: rt.ToValue(&ab)}, nil
 	}
 	return File{Path: path, Content: string(fileContent)}, nil
 }

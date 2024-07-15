@@ -2,7 +2,10 @@ module github.com/danhngo-lx/xk6-read
 
 go 1.20
 
-require go.k6.io/k6 v0.51.1-0.20240610082146-1f01a9bc2365
+require (
+	github.com/grafana/sobek v0.0.0-20240607083612-4f0cd64f4e78
+	go.k6.io/k6 v0.51.1-0.20240610082146-1f01a9bc2365
+)
 
 require (
 	github.com/cenkalti/backoff/v4 v4.2.1 // indirect
@@ -14,7 +17,6 @@ require (
 	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/go-sourcemap/sourcemap v2.1.4+incompatible // indirect
 	github.com/google/pprof v0.0.0-20230728192033-2ba5b33183c6 // indirect
-	github.com/grafana/sobek v0.0.0-20240607083612-4f0cd64f4e78 // indirect
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.19.0 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
